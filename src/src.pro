@@ -6,11 +6,12 @@ TARGET = esp_http_updater
 CONFIG += c++11
 
 CONFIG(debug, debug|release):CONFIGURATION=debug
-
-CONFIG(release, debug|release){
-    CONFIGURATION=release
-    #from static build
-    QMAKE_LFLAGS_RELEASE += -static -static-libgcc
+win32|win64{
+    CONFIG(release, debug|release){
+        CONFIGURATION=release
+        #from static build
+        QMAKE_LFLAGS_RELEASE += -static -static-libgcc
+    }
 }
 
 build_pass:CONFIG(debug, debug|release) {
